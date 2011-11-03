@@ -437,7 +437,7 @@ module GitCommitNotifier
         changed_file_list = []
         merge_revisions = commit_info[:merge].split
         merge_revisions.map!{|rev| rev.chomp("...")}
-        merge_first_parent = merge_revisions.slice!(0)
+        merge_first_parent = merge_revisions.shift
         merge_revisions.each do |merge_other_parent|
           changed_file_list += Git.changed_files(merge_first_parent, merge_other_parent)
         end
